@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyGenerator", "KeyGenerator\KeyGenerator.csproj", "{CCF04B23-F93C-4643-9F49-F4D39330801B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCF04B23-F93C-4643-9F49-F4D39330801B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCF04B23-F93C-4643-9F49-F4D39330801B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCF04B23-F93C-4643-9F49-F4D39330801B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCF04B23-F93C-4643-9F49-F4D39330801B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
