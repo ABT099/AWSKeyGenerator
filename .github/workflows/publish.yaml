@@ -1,0 +1,35 @@
+name: Publish Nuget Package
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build-and-publish:
+    name: Build and Publish Tool
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+
+      - name: Restore dependencies
+        run: dotnet restore KeyGenerator/KeyGenerator.csproj
+
+      - name: Build project
+        run: dotnet build KeyGenerator/KeyGenerator.csproj --configuration Release --no-restore 
+
+      - name: Extract version from tag
+        run: echo "VERSION=$(echo $GITHUB_REF_NAME | cut -d'v' -f 2)" >> $GITHUB_ENV
+
+      - name: Pack NuGet package
+        run: dotnet pack KeyGenerator/KeyGenerator.csproj --configuration Release --no-build /p:Version=${{ env.VERSION }} --output ./artifacts
+
+      - name: Publish to NuGet
+        run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
